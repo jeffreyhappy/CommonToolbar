@@ -7,6 +7,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 //import android.support.v4.app.ActivityCompat;
+import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -376,6 +377,13 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
             }
 
             return iv;
+        }
+
+        public void updateImage(Drawable drawable){
+            if (iv == null) {
+                return;
+            }
+            iv.setImageDrawable(drawable);
         }
     }
 
