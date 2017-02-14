@@ -105,9 +105,7 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         leftText = typedArray.getString(R.styleable.CommonToolbar_leftImg);
         leftTextColor = typedArray.getColor(R.styleable.CommonToolbar_leftTextColor,Color.WHITE);
         leftImage = typedArray.getDrawable(R.styleable.CommonToolbar_leftImg);
-//        if (leftImage == null){
-//            leftImage = ActivityCompat.getDrawable(getContext(),defaultBackImg);
-//        }
+
 
         title = typedArray.getString(R.styleable.CommonToolbar_title);
         titleColor = typedArray.getColor(R.styleable.CommonToolbar_titleColor,Color.WHITE);
@@ -311,7 +309,7 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
     public static class TextRightMenu implements RightMenu{
         private int   id;
         private String text;
-        private int    drawableId;
+        private TextView tv;
 
         public TextRightMenu(int id,String text) {
             this.id = id;
@@ -328,18 +326,31 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
 
         @Override
         public View getView(Context context) {
-            TextView tv = new TextView(context);
+            if (tv == null){
+                tv = new TextView(context);
+
+            }
             if(!TextUtils.isEmpty(text)){
                 tv.setText(text);
             }
 
             return tv;
         }
+
+        public void updateText(String text){
+            if (tv == null){
+                return;
+            }
+            if(!TextUtils.isEmpty(text)){
+                tv.setText(text);
+            }
+        }
     }
 
     public static class ImageRightMenu implements RightMenu{
         private int   id;
         private int    drawableId;
+        private ImageView  iv;
 
         public ImageRightMenu(int id,int drawableId) {
             this.id = id;
@@ -356,7 +367,10 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
 
         @Override
         public View getView(Context context) {
-            ImageView iv = new ImageView(context);
+            if (iv == null){
+                iv = new ImageView(context);
+            }
+
             if(drawableId > 0 ){
                 iv.setImageDrawable(ActivityCompat.getDrawable(context,getDrawableId()));
             }
