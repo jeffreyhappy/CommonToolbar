@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="CommonToolbar">
         <attr name="showDefaultBack" format="boolean"/>
+        <attr name="leftImg" format="reference"/>
         <attr name="leftText" format="string"/>
         <attr name="leftTextSize" format="dimension"/>
         <attr name="leftTextColor" format="color"/>

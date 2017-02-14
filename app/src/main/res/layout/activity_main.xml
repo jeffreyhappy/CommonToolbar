@@ -27,9 +27,9 @@
 
     <com.jeffrey.commontoolbar.CommonToolbar
         android:id="@+id/have_menu"
+        app:leftImg="@drawable/ic_arrow_back_white_48dp"
         app:title="@string/app_name"
         android:layout_marginTop="10dp"
-        app:showDefaultBack="false"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>

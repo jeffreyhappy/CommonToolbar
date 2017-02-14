@@ -4,7 +4,6 @@ apply plugin: 'com.github.dcendents.android-maven'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-    resourcePrefix "toolbar_" //这个随便填
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25

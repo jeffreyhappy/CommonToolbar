@@ -55,6 +55,8 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
     private int     defaultBackImg = R.drawable.ic_arrow_back_white_24dp;
     private AttributeSet attrs;
 
+    private Drawable leftImage;
+
     private View.OnClickListener  onLeftClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -100,8 +102,12 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         this.attrs = attrs;
 
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs,R.styleable.CommonToolbar);
-        leftText = typedArray.getString(R.styleable.CommonToolbar_leftText);
+        leftText = typedArray.getString(R.styleable.CommonToolbar_leftImg);
         leftTextColor = typedArray.getColor(R.styleable.CommonToolbar_leftTextColor,Color.WHITE);
+        leftImage = typedArray.getDrawable(R.styleable.CommonToolbar_leftImg);
+//        if (leftImage == null){
+//            leftImage = ActivityCompat.getDrawable(getContext(),defaultBackImg);
+//        }
 
         title = typedArray.getString(R.styleable.CommonToolbar_title);
         titleColor = typedArray.getColor(R.styleable.CommonToolbar_titleColor,Color.WHITE);
@@ -114,7 +120,7 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         menuTextColor = typedArray.getColor(R.styleable.CommonToolbar_menuTextColor,Color.WHITE);
 
 
-        if (showBackImg || !TextUtils.isEmpty(leftText)){
+        if (showBackImg || !TextUtils.isEmpty(leftText) || leftImage != null){
             rlLeft = new RelativeLayout(this.getContext());
             int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,55,getResources().getDisplayMetrics());
             RelativeLayout.LayoutParams  lp = new RelativeLayout.LayoutParams(width, LayoutParams.MATCH_PARENT);
@@ -141,8 +147,12 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
             showLeftText(leftText);
         }
 
-        if (showBackImg){
+        if (showBackImg ){
             setShowBackImg(ActivityCompat.getDrawable(getContext(),defaultBackImg));
+        }
+
+        if (leftImage != null){
+            setShowBackImg(leftImage);
         }
 
         if (!TextUtils.isEmpty(title)){
