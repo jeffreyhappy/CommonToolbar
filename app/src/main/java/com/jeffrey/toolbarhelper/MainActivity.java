@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "点击了左边", Toast.LENGTH_SHORT).show();
             }
         });
+        commonToolbar1.setTitle("标题哈");
         commonToolbar1.setLeftText("左边");
 
         /**********右边显示文字菜单****************/

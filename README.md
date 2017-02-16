@@ -2,7 +2,7 @@
 ####用Relative定义了个toolbar
 
 ####预览
-图片
+![screen.png](https://github.com/jeffreyhappy/CommonToolbar/blob/master/device-2017-02-16-211759.png)
 
 
 ####使用
@@ -41,8 +41,17 @@
 ```
 CommonToolbar commonToolbar = (CommonToolbar) findViewById(R.id.toolbar_left);
 commonToolbar.setLeftText("左边");
+commonToolbar.setLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "点击了左边", Toast.LENGTH_SHORT).show();
+            }
+        });
 ```
-
+* 设置标题
+```
+commonToolbar.setTitle("标题哈");
+```
 * 添加菜单
 ```
  ArrayList<CommonToolbar.RightMenu> menus = new ArrayList<>();
