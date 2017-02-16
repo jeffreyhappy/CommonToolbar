@@ -7,17 +7,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.jeffrey.toolbarhelper.MainActivity">
-    <include layout="@layout/toolbar_system"/>
+
+
     <com.jeffrey.commontoolbar.CommonToolbar
         app:title="标题"
+        app:showDefaultBack="false"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+
+    <com.jeffrey.commontoolbar.CommonToolbar
+        app:title="标题"
+        android:layout_marginTop="10dp"
         app:showDefaultBack="true"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
 
     <com.jeffrey.commontoolbar.CommonToolbar
-        android:id="@+id/have_custom_left"
-        app:title="@string/app_name"
+        android:id="@+id/toolbar_left"
+        app:title="@string/app_title"
         android:layout_marginTop="10dp"
         app:showDefaultBack="false"
         app:leftText="城市"
@@ -26,9 +36,27 @@
         android:layout_height="?attr/actionBarSize"/>
 
     <com.jeffrey.commontoolbar.CommonToolbar
-        android:id="@+id/have_menu"
-        app:leftImg="@drawable/ic_arrow_back_white_48dp"
-        app:title="@string/app_name"
+        android:id="@+id/toolbar_menu"
+        app:leftImg="@drawable/ic_arrow_back_white_24dp"
+        app:title="@string/app_title"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_red_dark"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <com.jeffrey.commontoolbar.CommonToolbar
+        android:id="@+id/toolbar_menu_multi"
+        app:leftImg="@drawable/ic_arrow_back_white_24dp"
+        app:title="@string/app_title"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <com.jeffrey.commontoolbar.CommonToolbar
+        android:id="@+id/toolbar_menu_multi2"
+        app:leftImg="@drawable/ic_arrow_back_white_24dp"
+        app:title="@string/app_title"
         android:layout_marginTop="10dp"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"

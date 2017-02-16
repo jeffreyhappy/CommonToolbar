@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CommonToolbar">
-        <attr name="showDefaultBack" format="boolean"/>
-        <attr name="leftImg" format="reference"/>
-        <attr name="leftText" format="string"/>
-        <attr name="leftTextSize" format="dimension"/>
-        <attr name="leftTextColor" format="color"/>
+        <attr name="showDefaultBack" format="boolean"/>        //是否显示默认返回按钮
+        <attr name="leftImg" format="reference"/>               //左边的图片
+        <attr name="leftText" format="string"/>                 //左边的文字
+        <attr name="leftTextSize" format="dimension"/>         //左边的文字大小
+        <attr name="leftTextColor" format="color"/>             //左边的文字颜色
 
-        <attr name="title" format="string"/>
-        <attr name="titleSize" format="dimension"/>
-        <attr name="titleColor" format="color"/>
+        <attr name="title" format="string"/>                    //标题
+        <attr name="titleSize" format="dimension"/>             //标题大小
+        <attr name="titleColor" format="color"/>                //标题颜色
 
 
-        <attr name="menuTextSize" format="dimension"/>
-        <attr name="menuTextColor" format="color"/>
+        <attr name="menuTextSize" format="dimension"/>          //菜单文字大小
+        <attr name="menuTextColor" format="color"/>             //菜单文字颜色
     </declare-styleable>
 </resources>
