@@ -23,41 +23,79 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TextView tvTitle = (TextView) toolbar.findViewById(R.id.tv_title);
-        tvTitle.setText("标题");
-        CommonToolbar commonToolbar1 = (CommonToolbar) findViewById(R.id.have_custom_left);
-        commonToolbar1.setLeftClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "点击了左边", Toast.LENGTH_SHORT).show();
-            }
-        });
-        commonToolbar1.setLeftText("左边");
-
-
-        CommonToolbar commonToolbar = (CommonToolbar) findViewById(R.id.have_menu);
-        commonToolbar.setRightMenu(mockData());
-        commonToolbar.setTitle(null);
-        commonToolbar.setOnMenuClickListener(new OnMenuClickListener() {
-            @Override
-            public void onClick(int id, View view) {
-                Toast.makeText(MainActivity.this, "id = " + id, Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        /********** 左边是文字 ****************/
+//        CommonToolbar commonToolbar1 = (CommonToolbar) findViewById(R.id.toolbar_left);
+//        commonToolbar1.setLeftClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(MainActivity.this, "点击了左边", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        commonToolbar1.setTitle("标题哈");
+//        commonToolbar1.setLeftText("左边");
+//
+//        /**********右边显示文字菜单****************/
+//        CommonToolbar commonToolbar = (CommonToolbar) findViewById(R.id.toolbar_menu);
+//        commonToolbar.setRightMenu(mockSimpleMenu());
+//        commonToolbar.setOnMenuClickListener(new OnMenuClickListener() {
+//            @Override
+//            public void onClick(int id, View view) {
+//                Toast.makeText(MainActivity.this, "id = " + id, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//
+//        /**********右边显示文字和图片菜单****************/
+//        CommonToolbar commonToolbarMultiMenu = (CommonToolbar) findViewById(R.id.toolbar_menu_multi);
+//        commonToolbarMultiMenu.setRightMenu(mockMenu2());
+//        commonToolbarMultiMenu.setOnMenuClickListener(new OnMenuClickListener() {
+//            @Override
+//            public void onClick(int id, View view) {
+//                Toast.makeText(MainActivity.this, "id = " + id, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//
+//        CommonToolbar commonToolbarMultiMenu2 = (CommonToolbar) findViewById(R.id.toolbar_menu_multi2);
+//        commonToolbarMultiMenu2.setRightMenu(mockMenu3());
+//        commonToolbarMultiMenu2.setTitle(null);
+//        commonToolbarMultiMenu2.setOnMenuClickListener(new OnMenuClickListener() {
+//            @Override
+//            public void onClick(int id, View view) {
+//                Toast.makeText(MainActivity.this, "id = " + id, Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
-    ArrayList<CommonToolbar.RightMenu> mockData(){
+
+    ArrayList<CommonToolbar.RightMenu> mockSimpleMenu(){
+        ArrayList<CommonToolbar.RightMenu> menus = new ArrayList<>();
+        CommonToolbar.RightMenu menu1 = new CommonToolbar.TextRightMenu(1,"菜单1");
+        CommonToolbar.RightMenu menu2 = new CommonToolbar.TextRightMenu(2,"菜单2");
+        menus.add(menu1);
+        menus.add(menu2);
+        return menus;
+    }
+
+    ArrayList<CommonToolbar.RightMenu> mockMenu2(){
         ArrayList<CommonToolbar.RightMenu> menus = new ArrayList<>();
 
 
         CommonToolbar.RightMenu menu1 = new CommonToolbar.TextRightMenu(1,"菜单1");
-        CommonToolbar.RightMenu menu2 = new CommonToolbar.ImageRightMenu(2,R.drawable.ic_arrow_back_black_24dp);
+        CommonToolbar.RightMenu menu2 = new CommonToolbar.ImageRightMenu(2,R.drawable.icon_share_blue);
+        menus.add(menu1);
+        menus.add(menu2);
+        return menus;
+    }
+
+
+    ArrayList<CommonToolbar.RightMenu> mockMenu3(){
+        ArrayList<CommonToolbar.RightMenu> menus = new ArrayList<>();
+
+
+        CommonToolbar.RightMenu menu1 = new CommonToolbar.TextRightMenu(1,"菜单1");
+        CommonToolbar.RightMenu menu2 = new CommonToolbar.ImageRightMenu(2,R.drawable.icon_share_blue);
         CommonToolbar.RightMenu menu3 = new CommonToolbar.RightMenu() {
             @Override
             public View getView(Context context) {
@@ -83,10 +121,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_test, menu);
-        return true;
-    }
 }

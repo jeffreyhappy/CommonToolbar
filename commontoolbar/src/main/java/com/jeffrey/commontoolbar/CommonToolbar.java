@@ -120,26 +120,7 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
 
 
         if (showBackImg || !TextUtils.isEmpty(leftText) || leftImage != null){
-            rlLeft = new RelativeLayout(this.getContext());
-            int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,55,getResources().getDisplayMetrics());
-            RelativeLayout.LayoutParams  lp = new RelativeLayout.LayoutParams(width, LayoutParams.MATCH_PARENT);
-            lp.addRule(RelativeLayout.ALIGN_LEFT);
-            rlLeft.setLayoutParams(lp);
-
-            final TypedArray a = getContext().obtainStyledAttributes(attrs, new int[] {R.attr.selectableItemBackground});
-            int attributeResourceId = a.getResourceId(0, 0);
-            Drawable drawable = ActivityCompat.getDrawable(getContext(),attributeResourceId);
-            rlLeft.setBackground(drawable);
-            addView(rlLeft);
-            a.recycle();
-            rlLeft.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onLeftClickListener != null){
-                        onLeftClickListener.onClick(v);
-                    }
-                }
-            });
+            rlLeft = initLeftLayout(attrs);
 
         }
         if (!TextUtils.isEmpty(leftText)){
@@ -162,8 +143,34 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         typedArray.recycle();
     }
 
+    private RelativeLayout initLeftLayout(AttributeSet attrs){
+        RelativeLayout rlLeft = new RelativeLayout(this.getContext());
+        int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,55,getResources().getDisplayMetrics());
+        RelativeLayout.LayoutParams  lp = new RelativeLayout.LayoutParams(width, LayoutParams.MATCH_PARENT);
+        lp.addRule(RelativeLayout.ALIGN_LEFT);
+        rlLeft.setLayoutParams(lp);
 
+        final TypedArray a = getContext().obtainStyledAttributes(attrs, new int[] {R.attr.selectableItemBackground});
+        int attributeResourceId = a.getResourceId(0, 0);
+        Drawable drawable = ActivityCompat.getDrawable(getContext(),attributeResourceId);
+        rlLeft.setBackground(drawable);
+        addView(rlLeft);
+        a.recycle();
+        rlLeft.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onLeftClickListener != null){
+                    onLeftClickListener.onClick(v);
+                }
+            }
+        });
+        return rlLeft;
+    }
     private void showLeftText(String text){
+        if (rlLeft == null){
+            rlLeft = initLeftLayout(attrs);
+        }
+
         if (tvLeft == null){
             TextView tv = new TextView(this.getContext());
             RelativeLayout.LayoutParams  lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -216,6 +223,10 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
 
     
     private void setShowBackImg(Drawable leftDrawable){
+        if (rlLeft == null){
+            rlLeft = initLeftLayout(attrs);
+        }
+
         if (ivLeft == null){
             ImageView iv = new ImageView(this.getContext());
             RelativeLayout.LayoutParams  lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
