@@ -205,6 +205,16 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         title = text;
     }
 
+    public void setLeftImage(Drawable leftDrawable){
+        leftImage = leftDrawable;
+        setShowBackImg(leftDrawable);
+    }
+
+    public void setLeftImage(int imgRes){
+        setLeftImage(ActivityCompat.getDrawable(getContext(),imgRes));
+    }
+
+    
     private void setShowBackImg(Drawable leftDrawable){
         if (ivLeft == null){
             ImageView iv = new ImageView(this.getContext());
