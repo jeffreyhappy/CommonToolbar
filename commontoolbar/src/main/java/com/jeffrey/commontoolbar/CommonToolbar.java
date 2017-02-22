@@ -221,6 +221,11 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         setLeftImage(ActivityCompat.getDrawable(getContext(),imgRes));
     }
 
+
+    public Drawable getLeftImage(){
+        return leftImage;
+    }
+
     
     private void setShowBackImg(Drawable leftDrawable){
         if (rlLeft == null){
