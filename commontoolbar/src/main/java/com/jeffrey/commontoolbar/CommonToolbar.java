@@ -99,6 +99,10 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         showLeftText(left);
     }
 
+
+    public void setMenuTextColor(int menuTextColor){
+        this.menuTextColor = menuTextColor;
+    }
     private void init(AttributeSet attrs){
         this.attrs = attrs;
 
