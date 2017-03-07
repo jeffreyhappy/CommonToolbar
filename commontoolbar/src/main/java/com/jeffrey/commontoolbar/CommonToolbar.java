@@ -372,6 +372,7 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
             if (tv == null){
                 return;
             }
+            this.text = text;
             if(!TextUtils.isEmpty(text)){
                 tv.setText(text);
             }
@@ -382,6 +383,7 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         private int   id;
         private int    drawableId;
         private ImageView  iv;
+        private Drawable drawable;
 
         public ImageRightMenu(int id,int drawableId) {
             this.id = id;
@@ -401,11 +403,13 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
             if (iv == null){
                 iv = new ImageView(context);
             }
-
-            if(drawableId > 0 ){
-                iv.setImageDrawable(ActivityCompat.getDrawable(context,getDrawableId()));
+            if (drawable == null && drawableId > 0){
+                drawable = ActivityCompat.getDrawable(context,getDrawableId());
             }
 
+            if (drawable != null){
+                iv.setImageDrawable(drawable);
+            }
             return iv;
         }
 
@@ -413,6 +417,8 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
             if (iv == null) {
                 return;
             }
+            this.drawable = drawable;
+
             iv.setImageDrawable(drawable);
         }
     }
