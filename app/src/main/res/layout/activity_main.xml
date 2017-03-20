@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/white"
     tools:context="com.jeffrey.toolbarhelper.MainActivity">
     <include layout="@layout/toolbar_system"/>
     <!--<com.jeffrey.commontoolbar.CommonToolbar-->
@@ -37,4 +38,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <com.jeffrey.commontoolbar.CommonToolbar
+        android:id="@+id/have_menu2"
+        app:leftImg="@drawable/ic_arrow_back_black_24dp"
+        app:title="@string/app_name"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
 </LinearLayout>

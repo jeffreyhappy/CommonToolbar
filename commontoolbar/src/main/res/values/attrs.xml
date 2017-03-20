@@ -14,5 +14,8 @@
 
         <attr name="menuTextSize" format="dimension"/>          //菜单文字大小
         <attr name="menuTextColor" format="color"/>             //菜单文字颜色
+
+        <attr name="showBottomLine" format="boolean"/>          //toolbar 底部分割线
+        <attr name="bottomLineColor" format="color"/>          //toolbar 底部分割线颜色
     </declare-styleable>
 </resources>

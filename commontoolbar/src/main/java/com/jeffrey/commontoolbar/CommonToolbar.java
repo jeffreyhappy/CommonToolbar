@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 //import android.support.v4.app.ActivityCompat;
 import android.os.Parcelable;
@@ -14,6 +15,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -48,6 +50,11 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
     private ArrayList<RightMenu>  menus;
     private int menuTextColor;
     private float menuTextSize;
+    private boolean showBottomDivider;
+    private int bottomDividerColor;
+
+
+    private ImageView  ivBottomDivider;
 
 
     private final int     defaultTitleSize = 18;//sp
@@ -103,6 +110,9 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
     public void setMenuTextColor(int menuTextColor){
         this.menuTextColor = menuTextColor;
     }
+
+
+
     private void init(AttributeSet attrs){
         this.attrs = attrs;
 
@@ -121,7 +131,8 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
 
         menuTextSize = typedArray.getDimension(R.styleable.CommonToolbar_menuTextSize,TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,defaultMenuTextSize,getResources().getDisplayMetrics()));
         menuTextColor = typedArray.getColor(R.styleable.CommonToolbar_menuTextColor,Color.WHITE);
-
+        showBottomDivider = typedArray.getBoolean(R.styleable.CommonToolbar_showBottomLine,true);
+        bottomDividerColor = typedArray.getColor(R.styleable.CommonToolbar_bottomLineColor,Color.parseColor("#f1f1f1"));
 
         if (showBackImg || !TextUtils.isEmpty(leftText) || leftImage != null){
             rlLeft = initLeftLayout(attrs);
@@ -143,6 +154,17 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
             showTitle(title);
         }
 
+
+
+        if(ivBottomDivider == null){
+            ivBottomDivider = new ImageView(getContext());
+            ivBottomDivider.setImageDrawable(new ColorDrawable(bottomDividerColor));
+            RelativeLayout.LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,1);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            ivBottomDivider.setLayoutParams(lp);
+            addView(ivBottomDivider);
+        }
+        drawBottomDivider(showBottomDivider);
 
         typedArray.recycle();
     }
@@ -272,6 +294,22 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
 
     }
 
+    private void drawBottomDivider(boolean showBottomDivider){
+
+
+        if (showBottomDivider){
+            ivBottomDivider.setVisibility(View.VISIBLE);
+        }else {
+            ivBottomDivider.setVisibility(View.GONE);
+        }
+
+
+
+    }
+    private void showBottomDivider(boolean showBottomDivider){
+        this.showBottomDivider = showBottomDivider;
+        drawBottomDivider(showBottomDivider);
+    }
 
     private void setMenu(RightMenu menu,LinearLayout parent){
 //        int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,55,getResources().getDisplayMetrics());
