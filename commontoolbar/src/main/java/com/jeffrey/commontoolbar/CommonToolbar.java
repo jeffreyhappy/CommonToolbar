@@ -65,6 +65,8 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
 
     private Drawable leftImage;
 
+    private View    customTitleView;
+
     private View.OnClickListener  onLeftClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -102,6 +104,29 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
         showTitle(title);
     }
 
+
+    public void setCustomTitleView(View customTitleView){
+        if (this.customTitleView != null){
+            if (this.customTitleView == customTitleView){
+                return;
+            }else {
+                removeCustomTitleView();
+            }
+        }
+        this.customTitleView = customTitleView;
+        RelativeLayout.LayoutParams  lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        customTitleView.setLayoutParams(lp);
+        addView(customTitleView);
+    }
+
+    public void removeCustomTitleView(){
+        if (customTitleView == null){
+            return;
+        }
+        removeView(customTitleView);
+        customTitleView = null;
+    }
     public void setLeftText(String left){
         showLeftText(left);
     }
@@ -217,6 +242,18 @@ public class CommonToolbar extends RelativeLayout implements OnMenuClickListener
             ivLeft = null;
         }
     }
+
+    private void showCustomTitleView(){
+        if (customTitleView == null){
+            return;
+        }
+        RelativeLayout.LayoutParams  lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        customTitleView.setLayoutParams(lp);
+        addView(customTitleView);
+    }
+
+
 
 
     private void showTitle(String text){
